@@ -6,13 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Quiz</title>
+    <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
-    <div id="quiz"></div>
-    <button id="submit">Submit Quiz</button>
-    <div id="results"></div>
-    <script src="quiz.js"></script>
+    <div class="container">
+        <div id="home" class="flex-column flex-center">
+            <h1>Are you Ready?</h1>
+            <a href="/game.html" class="startBtn">Play</a>
+            <a href="/highscores.html" id="highscore-btn" class="btn">High Scores</a>
+        </div>
+    </div>
+    <script src="game.js"></script>
 </body>
 
 </html>

@@ -1,11 +1,12 @@
-* {
+body {
     background-color: rgb(78, 7, 78);
+    color: white;
 }
 
 
-#TimerDisplay {
+#timerDisplay {
 color: white;
-font-size: 50px;
+font-size: 3em;
 }
 
 #Timer {
@@ -14,9 +15,57 @@ font-size: 50px;
     margin-right: 30px;
 }
 
-.hud-prefix {
-    display:inline;
-    color: white;
-    text-align:left
+#question {
+    display: flex;
+    font-size: 3rem;
+    margin-bottom: 4rem;
+    justify-content: center;
 }
 
+
+.choice-container {
+    display: flex;
+    margin-bottom: 4rem;
+    width: 100%;
+    border-radius: 10px;
+    background:  rgb(18, 93, 255);
+    font-size: 3rem;
+    min-width: 50rem;
+}
+
+.choice-container:hover {
+    cursor: pointer;
+    box-shadow: white;
+    transform: scale(1.02);
+    transform: transform 100ms;
+}
+
+.choice-prefix {
+    padding: 2rem 2.5rem;
+    color: white;
+}
+
+.choice-text {
+    padding: 2rem;
+    width: 100%;
+}
+
+.correct {
+    background: green;
+}
+
+.incorrect {
+    background: red;
+}
+
+/* Heads up Display */
+#hud {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 768px){
+    .choice-container {
+        min-width: 40rem;
+    }
+}

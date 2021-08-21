@@ -1,9 +1,17 @@
-//When page loads a timer starts to countdown
+
+let question = document.querySelector('#question');
+let choices = document.querySelectorAll('.choice-text');
+
+
+let currentQuestion = {};
+let rightAnswers = true;
+let questionCounter = 0;
+let availableQuestions = [];
 
 function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
     setInterval(function () {
-        minutes = parseInt(timer / 60, 10)
+        minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);
 
         minutes = minutes < 10 ? "0" + minutes : minutes;
@@ -14,16 +22,18 @@ function startTimer(duration, display) {
         if (--timer < 0) {
             timer = duration;
         }
+
     }, 1000);
+
+    if (selectedChoice === false)
+        startTimer - 20;
 }
 
-let question = document.querySelector('#question');
-let choices = document.querySelectorAll('.choice-text');
-
-let currentQuestion = {};
-let acceptingAnswers = true;
-let questionCounter = 0;
-let availableQuestions = [];
+window.onload = function () {
+    var fiveMinutes = 60 * 3
+    display = document.querySelector('#timerDisplay');
+    startTimer(fiveMinutes, display);
+};
 
 let questions = [
     {
@@ -108,6 +118,9 @@ let questions = [
     },
 ]
 
+jsonQuestions = JSON.stringify(questions);
+console.log(jsonQuestions)
+
 const maxQuestions = 10;
 
 function startGame() {
@@ -117,7 +130,10 @@ function startGame() {
 }
 
 function getNewQuestion() {
-    questionCounter++;
+    if (availableQuestions.length === 0 || questionCounter > maxQuestions) {
+        localStorage.setItem('mostRecentGame')
+        return window.location.assign('end.html');
+    }
 
     let questionsIndex = Math.floor(Math.random() * availableQuestions.length);
     currentQuestion = availableQuestions[questionsIndex];
@@ -130,29 +146,23 @@ function getNewQuestion() {
 
     availableQuestions.splice(questionsIndex, 1);
 
-    acceptingAnswers = true;
+    rightAnswers = true;
 }
 
 choices.forEach(choices => {
     choices.addEventListener('click', e => {
-        if (!acceptingAnswers) return;
+        if (!rightAnswers)
+            return;
 
-        acceptingAnswers = false;
         let selectedChoice = e.target;
         let selectedAnswer = selectedChoice.dataset['number'];
-
-        let classToApply = selectedAnswer == currentQuestion.answer ? '.correct' : '.incorrect';
-
-        if (classToApply === '.correct') {
-        }
-
-        selectedChoice.parentElement.classList.addEventListener('click', classToApply);
-
         setTimeout(() => {
-            selectedChoice.parentElement.classList.remove(classToApply);
             getNewQuestion();
         }, 1000);
     });
+
 });
 
 startGame()
+
+//end.html//

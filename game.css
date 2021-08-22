@@ -4,7 +4,7 @@ body {
 }
 
 
-#timerDisplay {
+#timerDisplay, .score {
 color: white;
 font-size: 3rem;
 }

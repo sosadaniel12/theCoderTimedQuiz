@@ -8,32 +8,17 @@ let rightAnswers = true;
 let questionCounter = 0;
 let availableQuestions = [];
 
-function startTimer(duration, display) {
-    var timer = duration, minutes, seconds;
-    setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
-
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        display.textContent = minutes + ":" + seconds;
-
-        if (--timer < 0) {
-            timer = duration;
-        }
-
-    }, 1000);
-
-    if (selectedChoice === false)
-        startTimer - 20;
+function countdownTimer() {
+    const parts = {
+        minutes: Math.floor((difference / 1000 / 60) % 60),
+        seconds: Math.floor((difference / 1000) % 60),
+    }
+    remaining = Object.keys(parts).map(part => {
+        if (!parts[part]) return;
+        return `${parts[part]} ${part}`;
+    }).join("");
+    document.getElementById('#timerDisplay')
 }
-
-window.onload = function () {
-    var fiveMinutes = 60 * 3
-    display = document.querySelector('#timerDisplay');
-    startTimer(fiveMinutes, display);
-};
 
 let questions = [
     {
